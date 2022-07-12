@@ -133,6 +133,10 @@ export default function App() {
     setCount((count) => count + 1);
   };
 
+  function handleMyClick() {
+    alert("I got clicked");
+  }
+
   return (
     // the class is replaced by className not to have a clash
     <div className="App">
@@ -145,9 +149,16 @@ export default function App() {
       <MyButton count={count} handleClick={handleClick} />
       <Display />
       <VegStore />
+      {/* The below demos passing a function reference and 
+      not executing it straight away, so no () */}
+      <Button onClick={handleMyClick}>Click me</Button>
     </div>
   );
 }
+
+const Button = ({ onClick, children }) => (
+  <button onClick={onClick}>{children}</button>
+);
 
 const VegStore = () => {
   return (
