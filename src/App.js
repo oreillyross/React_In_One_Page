@@ -1,8 +1,7 @@
-// CURRENT PROGRESS: https://beta-reactjs-org-git-tef-fbopensource.vercel.app/learn/thinking-in-react
-
 // you can directly import css classes, or add the link tag to html file in public dir
 // usually the entry point to your app
 import { useState } from "react";
+import { render } from "react-dom";
 import "./styles.css";
 
 const PRODUCTS = [
@@ -152,6 +151,8 @@ export default function App() {
       {/* The below demos passing a function reference and 
       not executing it straight away, so no () */}
       <Button onClick={handleMyClick}>Click me</Button>
+
+      <Add3Button />
     </div>
   );
 }
@@ -249,3 +250,29 @@ const Display = () => {
 //    update the state, down into the components where they can be invoked
 //    passed down through props, then invoke them on the html inputs /
 //    or elements and pass along any data, such as e.target.value
+
+function Add3Button() {
+  const [value, setValue] = useState(0);
+
+  // one would expect the commented out code would update
+  // 3 times, but the way react deals with state is such that
+  // it is not part of the render, so the state is set at the time a re-render is ChannelSplitterNode
+  // Ensure you provide the updater function (setState) with a
+  // state updater so React knows what has changed for the correct state to be
+  // calculated
+  const handleClick = (e) => {
+    // setValue(value + 1)
+    // setValue(value + 1)
+    // setValue(value + 1)
+    setValue((value) => value + 1);
+    setValue((value) => value + 1);
+    setValue((value) => value + 1);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>+3</button>
+      <p> The value is: {value}</p>
+    </div>
+  );
+}
