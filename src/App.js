@@ -1,8 +1,9 @@
 // you can directly import css classes, or add the link tag to html file in public dir
 // usually the entry point to your app
 import { useState } from "react";
-import { render } from "react-dom";
 import "./styles.css";
+
+const nums = [1, 2, 3, 4, 5];
 
 const PRODUCTS = [
   { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
@@ -154,6 +155,7 @@ export default function App() {
 
       <Add3Button />
       <ObjectForm />
+      <ListNums nums={nums} />
     </div>
   );
 }
@@ -323,5 +325,20 @@ function ObjectForm() {
       </label>
       <button type="submit">Submit</button>
     </form>
+  );
+}
+
+// The below illustrates how to first copy an array
+// and then to conduct a mutating function on it like
+// reverse, or splice or sort, pop, push etc
+function ListNums({ nums }) {
+  const reversedNums = [...nums].reverse();
+
+  return (
+    <ul>
+      {reversedNums.map((num) => (
+        <li>{num}</li>
+      ))}
+    </ul>
   );
 }
