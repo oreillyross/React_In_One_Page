@@ -153,6 +153,7 @@ export default function App() {
       <Button onClick={handleMyClick}>Click me</Button>
 
       <Add3Button />
+      <ObjectForm />
     </div>
   );
 }
@@ -274,5 +275,53 @@ function Add3Button() {
       <button onClick={handleClick}>+3</button>
       <p> The value is: {value}</p>
     </div>
+  );
+}
+
+// A very cool trick to use the object spread operator
+// to dynamically set the value of an object stored in
+// React state
+function ObjectForm() {
+  const [person, setPerson] = useState({});
+
+  function handleChange(e) {
+    setPerson({ ...person, [e.target.name]: e.target.value });
+  }
+
+  function handleSubmit() {
+    alert(JSON.stringify(person));
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        First Name
+        <input
+          name="first"
+          type="text"
+          value={person.first}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Last Name
+        <input
+          name="last"
+          type="text"
+          value={person.last}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Age
+        <input
+          name="age"
+          type="number"
+          value={person.age}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
